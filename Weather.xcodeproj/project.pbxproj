@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		59AB5A1A183997762BEC3AB8 /* Pods_Weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7322E1EE38CDFBE7AC8C547 /* Pods_Weather.framework */; };
+		19D8458BEB00E88D9C124D1E /* Pods_Weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8686D6DDB301B56402A1240F /* Pods_Weather.framework */; };
 		884A3B9B29744FC2006C7AD6 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884A3B9A29744FC2006C7AD6 /* SearchViewModel.swift */; };
 		884A3B9D2974505A006C7AD6 /* CityCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884A3B9C2974505A006C7AD6 /* CityCellViewModel.swift */; };
 		884A3B9F29758577006C7AD6 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884A3B9E29758577006C7AD6 /* StorageManager.swift */; };
@@ -47,6 +47,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15B7819CCBF4AA36B1F0C218 /* Pods-Weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.debug.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.debug.xcconfig"; sourceTree = "<group>"; };
+		8686D6DDB301B56402A1240F /* Pods_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		884A3B9A29744FC2006C7AD6 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		884A3B9C2974505A006C7AD6 /* CityCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCellViewModel.swift; sourceTree = "<group>"; };
 		884A3B9E29758577006C7AD6 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
@@ -85,9 +87,7 @@
 		88ECC6732973274E0058691D /* DayCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCellViewModel.swift; sourceTree = "<group>"; };
 		88ECC675297345EA0058691D /* HourCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourCellViewModel.swift; sourceTree = "<group>"; };
 		88FB83C22955BEA90011FDA0 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
-		976FBFBD03458938D3A9CFF3 /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
-		E7322E1EE38CDFBE7AC8C547 /* Pods_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB303DC986D82301F5A7C0F7 /* Pods-Weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.debug.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.debug.xcconfig"; sourceTree = "<group>"; };
+		9F33BF0E4D4B924C50F58578 /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,19 +95,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59AB5A1A183997762BEC3AB8 /* Pods_Weather.framework in Frameworks */,
+				19D8458BEB00E88D9C124D1E /* Pods_Weather.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3C383EA8EF835E2F17C6E081 /* Frameworks */ = {
+		21B8A08896BF429F3607C890 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E7322E1EE38CDFBE7AC8C547 /* Pods_Weather.framework */,
+				15B7819CCBF4AA36B1F0C218 /* Pods-Weather.debug.xcconfig */,
+				9F33BF0E4D4B924C50F58578 /* Pods-Weather.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		884A871C294DF29D003EB0D1 = {
@@ -115,8 +117,8 @@
 			children = (
 				884A8727294DF29E003EB0D1 /* Weather */,
 				884A8726294DF29E003EB0D1 /* Products */,
-				F533C923D500FF3EE2E8F8EA /* Pods */,
-				3C383EA8EF835E2F17C6E081 /* Frameworks */,
+				21B8A08896BF429F3607C890 /* Pods */,
+				E89320957B127C37C76C2BD1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -260,13 +262,12 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		F533C923D500FF3EE2E8F8EA /* Pods */ = {
+		E89320957B127C37C76C2BD1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EB303DC986D82301F5A7C0F7 /* Pods-Weather.debug.xcconfig */,
-				976FBFBD03458938D3A9CFF3 /* Pods-Weather.release.xcconfig */,
+				8686D6DDB301B56402A1240F /* Pods_Weather.framework */,
 			);
-			path = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -558,7 +559,7 @@
 		};
 		884A873A294DF29F003EB0D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EB303DC986D82301F5A7C0F7 /* Pods-Weather.debug.xcconfig */;
+			baseConfigurationReference = 15B7819CCBF4AA36B1F0C218 /* Pods-Weather.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -587,7 +588,7 @@
 		};
 		884A873B294DF29F003EB0D1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 976FBFBD03458938D3A9CFF3 /* Pods-Weather.release.xcconfig */;
+			baseConfigurationReference = 9F33BF0E4D4B924C50F58578 /* Pods-Weather.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
