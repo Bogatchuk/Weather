@@ -18,7 +18,6 @@
 		884A3BAA297D3BC6006C7AD6 /* ToDay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 884A3BA9297D3BC6006C7AD6 /* ToDay.storyboard */; };
 		884A3BAC297D3BF1006C7AD6 /* Tomorrow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 884A3BAB297D3BF1006C7AD6 /* Tomorrow.storyboard */; };
 		884A3BAE297D3C20006C7AD6 /* FiveDays.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 884A3BAD297D3C1F006C7AD6 /* FiveDays.storyboard */; };
-		884A3BB0297D3C4C006C7AD6 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 884A3BAF297D3C4C006C7AD6 /* Settings.storyboard */; };
 		884A3BB2297D3C5C006C7AD6 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 884A3BB1297D3C5C006C7AD6 /* Search.storyboard */; };
 		884A3BB4297D5C56006C7AD6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884A3BB3297D5C56006C7AD6 /* Coordinator.swift */; };
 		884A3BB8297D5EC9006C7AD6 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884A3BB7297D5EC9006C7AD6 /* AppCoordinator.swift */; };
@@ -43,7 +42,6 @@
 		88AC3647296C39DA0019F17E /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AC3645296C39DA0019F17E /* CityCell.swift */; };
 		88AC3648296C39DA0019F17E /* CityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88AC3646296C39DA0019F17E /* CityCell.xib */; };
 		88AF9901296F0FEB0001C1CF /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AF9900296F0FEB0001C1CF /* StartViewController.swift */; };
-		88BD19A22951BF4A00498F7D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD19A12951BF4A00498F7D /* SettingsViewController.swift */; };
 		88BD19A42951BF8D00498F7D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD19A32951BF8D00498F7D /* SearchViewController.swift */; };
 		88BD19A72952326A00498F7D /* HourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD19A52952326A00498F7D /* HourCell.swift */; };
 		88BD19A82952326A00498F7D /* HourCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88BD19A62952326A00498F7D /* HourCell.xib */; };
@@ -74,7 +72,6 @@
 		884A3BA9297D3BC6006C7AD6 /* ToDay.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ToDay.storyboard; sourceTree = "<group>"; };
 		884A3BAB297D3BF1006C7AD6 /* Tomorrow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tomorrow.storyboard; sourceTree = "<group>"; };
 		884A3BAD297D3C1F006C7AD6 /* FiveDays.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FiveDays.storyboard; sourceTree = "<group>"; };
-		884A3BAF297D3C4C006C7AD6 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		884A3BB1297D3C5C006C7AD6 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		884A3BB3297D5C56006C7AD6 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		884A3BB7297D5EC9006C7AD6 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -101,7 +98,6 @@
 		88AC3645296C39DA0019F17E /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
 		88AC3646296C39DA0019F17E /* CityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityCell.xib; sourceTree = "<group>"; };
 		88AF9900296F0FEB0001C1CF /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		88BD19A12951BF4A00498F7D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		88BD19A32951BF8D00498F7D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		88BD19A52952326A00498F7D /* HourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourCell.swift; sourceTree = "<group>"; };
 		88BD19A62952326A00498F7D /* HourCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HourCell.xib; sourceTree = "<group>"; };
@@ -261,15 +257,6 @@
 			path = FiveDays;
 			sourceTree = "<group>";
 		};
-		889DC3C12971743300759871 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				88BD19A12951BF4A00498F7D /* SettingsViewController.swift */,
-				884A3BAF297D3C4C006C7AD6 /* Settings.storyboard */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
 		889DC3C22971744000759871 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,7 +342,6 @@
 				889DC3BC297173B800759871 /* ToDay */,
 				889DC3BF2971741C00759871 /* Tomorrow */,
 				889DC3C02971742900759871 /* FiveDays */,
-				889DC3C12971743300759871 /* Settings */,
 				889DC3C22971744000759871 /* Search */,
 			);
 			path = ViewControllers;
@@ -441,7 +427,6 @@
 				88AC3648296C39DA0019F17E /* CityCell.xib in Resources */,
 				884A3BA8297D3B62006C7AD6 /* Weather.storyboard in Resources */,
 				884A3BAA297D3BC6006C7AD6 /* ToDay.storyboard in Resources */,
-				884A3BB0297D3C4C006C7AD6 /* Settings.storyboard in Resources */,
 				884A8735294DF29F003EB0D1 /* LaunchScreen.storyboard in Resources */,
 				88A4AD00295CD11C0067D1B4 /* DayCell.xib in Resources */,
 				884A3BAC297D3BF1006C7AD6 /* Tomorrow.storyboard in Resources */,
@@ -540,7 +525,6 @@
 				884A873F294E0E88003EB0D1 /* NetworkDataFetcher.swift in Sources */,
 				88AF9901296F0FEB0001C1CF /* StartViewController.swift in Sources */,
 				88ECC6722972FB4F0058691D /* FiveDaysViewModel.swift in Sources */,
-				88BD19A22951BF4A00498F7D /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
