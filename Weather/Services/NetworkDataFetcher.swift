@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DataFetcher {
-    func fetchGenericJSONData<T: Decodable>(urlString: String, completion: @escaping (T?) -> ())
+    func fetchGenericJSONData<T: Decodable>(url: URL, completion: @escaping (T?) -> ())
 }
 
 class NetworkDataFetcher: DataFetcher{
@@ -16,8 +16,8 @@ class NetworkDataFetcher: DataFetcher{
     private init(){}
     
     
-    func fetchGenericJSONData<T: Decodable>(urlString: String, completion: @escaping (T?) -> ()){
-        NetworkManager.shared.request(urlString: urlString) { data, error in
+    func fetchGenericJSONData<T: Decodable>(url: URL, completion: @escaping (T?) -> ()){
+        NetworkManager.shared.request(url: url) { data, error in
             if let error = error {
                 print("Error received requesting data: \(error.localizedDescription)")
                 completion(nil)

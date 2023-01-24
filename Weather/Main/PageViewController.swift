@@ -19,9 +19,12 @@ class PageViewController: UIPageViewController {
     
     private lazy var pages: [UIViewController] = {
         return [
-            self.getViewController(withIdentifier: "ToDayViewController"),
-            self.getViewController(withIdentifier: "TomorrowViewController"),
-            self.getViewController(withIdentifier: "FiveDaysViewController")
+            UIStoryboard(name: "ToDay", bundle: nil).instantiateViewController(withIdentifier: "ToDayViewController"),
+            UIStoryboard(name: "Tomorrow", bundle: nil).instantiateViewController(withIdentifier: "TomorrowViewController"),
+            UIStoryboard(name: "FiveDays", bundle: nil).instantiateViewController(withIdentifier: "FiveDaysViewController")
+//            self.getViewController(withIdentifier: "ToDayViewController"),
+//            self.getViewController(withIdentifier: "TomorrowViewController"),
+//            self.getViewController(withIdentifier: "FiveDaysViewController")
         ]
     }()
     
@@ -40,9 +43,9 @@ class PageViewController: UIPageViewController {
         
     }
     
-    private func getViewController(withIdentifier identifier: String) -> UIViewController{
-        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: identifier)
-    }
+//    private func getViewController(withIdentifier identifier: String) -> UIViewController{
+//        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: identifier)
+//    }
     
     func scrollToViewController(index newIndex: Int){
         if let firstViewController = viewControllers?.first,

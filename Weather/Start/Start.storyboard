@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Start View Controller-->
+        <scene sceneID="Ga9-7c-DK0">
+            <objects>
+                <viewController storyboardIdentifier="StartViewController" id="wSS-CL-CTm" customClass="StartViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WRf-LO-rkB">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="PeG-q2-MYM">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="9wP-90-u8C">
+                                <rect key="frame" x="46.666666666666657" y="309.33333333333331" width="300" height="233.66666666666669"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FbR-Tf-d8E">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="81.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="PartyLetPlain" family="Party LET" pointSize="70"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="01d" translatesAutoresizingMaskIntoConstraints="NO" id="LGk-WH-tT2">
+                                        <rect key="frame" x="0.0" y="83.666666666666686" width="300" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="Ici-B3-9x8"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="U9L-pI-BAt"/>
+                                </constraints>
+                            </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="pR0-DX-Du5">
+                                <rect key="frame" x="178" y="449.33333333333331" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="izn-BA-w9o"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="PeG-q2-MYM" firstAttribute="leading" secondItem="izn-BA-w9o" secondAttribute="leading" id="G7T-iX-rcj"/>
+                            <constraint firstItem="PeG-q2-MYM" firstAttribute="trailing" secondItem="izn-BA-w9o" secondAttribute="trailing" id="H7B-A6-gaD"/>
+                            <constraint firstItem="pR0-DX-Du5" firstAttribute="centerY" secondItem="LGk-WH-tT2" secondAttribute="centerY" id="M7c-CY-Cq9"/>
+                            <constraint firstItem="9wP-90-u8C" firstAttribute="centerY" secondItem="PeG-q2-MYM" secondAttribute="centerY" id="ZNh-qf-1kA"/>
+                            <constraint firstAttribute="bottom" secondItem="PeG-q2-MYM" secondAttribute="bottom" id="bcA-uP-vci"/>
+                            <constraint firstItem="pR0-DX-Du5" firstAttribute="centerX" secondItem="LGk-WH-tT2" secondAttribute="centerX" id="fCS-s3-3C6"/>
+                            <constraint firstItem="9wP-90-u8C" firstAttribute="centerX" secondItem="PeG-q2-MYM" secondAttribute="centerX" id="fO2-1G-wSg"/>
+                            <constraint firstItem="PeG-q2-MYM" firstAttribute="top" secondItem="WRf-LO-rkB" secondAttribute="top" id="mb6-DP-Xok"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="pR0-DX-Du5" id="dNf-w5-HPk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iNb-g2-QzJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="15" y="-160"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="01d" width="75" height="75"/>
+        <image name="background" width="1080" height="1920"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

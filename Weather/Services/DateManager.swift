@@ -48,7 +48,11 @@ class DateManager {
             dateFormatter.timeZone = TimeZone(secondsFromGMT: timezone!)
         }
 
-        return dateFormatter.string(from: date ?? .now)
+        if #available(iOS 15, *) {
+            return dateFormatter.string(from: date ?? .now)
+        } else {
+            return dateFormatter.string(from: date ?? Date())
+        }
     }
    
     

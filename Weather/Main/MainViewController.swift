@@ -11,6 +11,9 @@ class MainViewController: UIViewController {
 
     @IBOutlet weak var pageSegmentedControl: UISegmentedControl!
     private var pageViewController: PageViewController?
+  
+    
+    weak var coordinator: AppCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +22,12 @@ class MainViewController: UIViewController {
   
     }
     
-
+    
+    
+    @IBAction func showSearchView(_ sender: Any) {
+        coordinator?.showSearchView()
+    }
+    
     @IBAction func changedSelectedPage(_ sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
         pageViewController?.scrollToViewController(index: index)

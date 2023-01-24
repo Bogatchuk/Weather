@@ -10,7 +10,10 @@ import CoreLocation
 
 
 
-class BootViewController: UIViewController {
+class StartViewController: UIViewController {
+    
+    weak var coordinator: AppCoordinator?
+    
     let dataFetcherService = DataFetcherService()
     let locationManager = CLLocationManager()
     
@@ -25,12 +28,8 @@ class BootViewController: UIViewController {
         
     }
     
-}
-
-extension BootViewController: CLLocationManagerDelegate{
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.last {
+    func getWeatherData(location: CLLocation?){
+        if let location = location {
             let lat = location.coordinate.latitude
             let lon = location.coordinate.longitude
             let group = DispatchGroup()
@@ -54,12 +53,26 @@ extension BootViewController: CLLocationManagerDelegate{
             group.notify(queue: .main) {
                 print("Finish Fetch")
                 self.activityIndicator.stopAnimating()
-                self.performSegue(withIdentifier: "mainViewController", sender: .none)
+                self.coordinator?.showWeatherView()
             }
             
         }
     }
     
+}
+
+extension StartViewController: CLLocationManagerDelegate{
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        getWeatherData(location: locations.last)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status.rawValue == 4 {
+            getWeatherData(location: manager.location)
+        }
+       
+    }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }

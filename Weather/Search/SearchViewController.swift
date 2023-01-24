@@ -14,6 +14,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
     var listCities: [CitySearch]!
     var load = false
     @IBOutlet weak var tableView: UITableView!
+    weak var coordinator: AppCoordinator?
     
     var viewModel: SearchViewModelProtocol!{
         didSet{
@@ -31,8 +32,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         self.tableView.register(CityCell.nib(), forCellReuseIdentifier: CityCell.identifire)
         self.tableView.showsVerticalScrollIndicator = false
         viewModel = SearchViewModel()
-   
-       // print(searchController.isActive)
         
     }
     
@@ -81,7 +80,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
             
             let city = self.listCities[indexPath.row].city
             self.viewModel.getWeather(city: city){
-                self.performSegue(withIdentifier: "goToMain", sender: .none)
+                self.coordinator?.showWeatherView()
             }
             
         }
