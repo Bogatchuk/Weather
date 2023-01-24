@@ -1,16 +1,16 @@
 {
   "images" : [
     {
-      "filename" : "13n.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "13n 1.png",
+      "filename" : "13n@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "13n@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

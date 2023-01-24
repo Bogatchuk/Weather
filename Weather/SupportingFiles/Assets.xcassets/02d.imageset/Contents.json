@@ -1,16 +1,16 @@
 {
   "images" : [
     {
-      "filename" : "02d.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "02d 1.png",
+      "filename" : "02d@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "02d@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

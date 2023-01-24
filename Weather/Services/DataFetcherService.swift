@@ -9,7 +9,7 @@ import Foundation
 
 class DataFetcherService {
 
-    func fetchCurrentWeather(city: String, completion: @escaping (CurrentWeather?) -> ()){
+   static func fetchCurrentWeather(city: String, completion: @escaping (CurrentWeather?) -> ()){
         
         var components = URLComponents(string: Constants.baseApiUrl)
         components?.path = Constants.currentWeatherApi
@@ -23,7 +23,7 @@ class DataFetcherService {
         NetworkDataFetcher.shared.fetchGenericJSONData(url: url, completion: completion)
     }
     
-    func fetchCurrentWeather(latitude: Double, longitude: Double, completion: @escaping (CurrentWeather?) -> ()){
+    static func fetchCurrentWeather(latitude: Double, longitude: Double, completion: @escaping (CurrentWeather?) -> ()){
         
         var components = URLComponents(string: Constants.baseApiUrl)
         components?.path = Constants.currentWeatherApi
@@ -39,7 +39,7 @@ class DataFetcherService {
         NetworkDataFetcher.shared.fetchGenericJSONData(url: url, completion: completion)
     }
     
-    func fetchForecastWeather(city: String, completion: @escaping (ForecastWeatherModel?) -> ()){
+    static func fetchForecastWeather(city: String, completion: @escaping (ForecastWeatherModel?) -> ()){
         
         var components = URLComponents(string: Constants.baseApiUrl)
         components?.path = Constants.forecastWeatherApi
@@ -54,7 +54,7 @@ class DataFetcherService {
         NetworkDataFetcher.shared.fetchGenericJSONData(url: url, completion: completion)
     }
     
-    func fetchForecastWeather(latitude: Double, longitude: Double, completion: @escaping (ForecastWeatherModel?) -> ()){
+    static func fetchForecastWeather(latitude: Double, longitude: Double, completion: @escaping (ForecastWeatherModel?) -> ()){
         
         var components = URLComponents(string: Constants.baseApiUrl)
         components?.path = Constants.forecastWeatherApi
@@ -70,7 +70,7 @@ class DataFetcherService {
         NetworkDataFetcher.shared.fetchGenericJSONData(url: url, completion: completion)
     }
     
-    func featchCity(city: String, completion: @escaping (FoundCity?) -> ()){
+    static func featchCity(city: String, completion: @escaping (FoundCity?) -> ()){
           
         var components = URLComponents(string: Constants.baseApiUrl)
         components?.path = Constants.cityApi

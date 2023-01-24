@@ -8,69 +8,69 @@
 import Foundation
 import RealmSwift
 
-let realm = try! Realm()
+
 
 class StorageManager {
     private init(){}
     static let shared = StorageManager()
+    let realm: Realm? = try? Realm()
     
     func saveCityToSearch(city: CitySearch){
         
-        let listOfCities = realm.objects(CitySearch.self)
+        guard let listOfCities = realm?.objects(CitySearch.self) else { return }
         
         for cityFromList in listOfCities {
             if cityFromList.city == city.city {
-                try! realm.write {
-                    realm.delete(cityFromList)
+                try? realm?.write {
+                    realm?.delete(cityFromList)
                 }
             }
         }
         
-        try! realm.write {
-            realm.add(city)
+        try! realm?.write {
+            realm?.add(city)
         }
         
     }
     
     func saveForecastWeather(forecastWeather: ForecastWeatherModel){
 
-        try! realm.write {
-            realm.deleteAll(ForecastWeatherModel.self)
-            realm.add(forecastWeather)
+        try? realm?.write {
+            realm?.deleteAll(ForecastWeatherModel.self)
+            realm?.add(forecastWeather)
         }
     }
     
     func saveCurrentWeather(currentWeather: CurrentWeather){
-        try! realm.write {
-            realm.deleteAll(CurrentWeather.self)
-            realm.add(currentWeather)
+        try? realm?.write {
+            realm?.deleteAll(CurrentWeather.self)
+            realm?.add(currentWeather)
         }
     }
     
     func delete(_ city: CitySearch){
-        try! realm.write{
-            realm.delete(city)
+        try? realm?.write{
+            realm?.delete(city)
         }
     }
     
     func getForecastWeather() -> ForecastWeatherModel?{
-        return realm.objects(ForecastWeatherModel.self).first
+        return realm?.objects(ForecastWeatherModel.self).first
     }
     
     func getCurrentWeather() -> CurrentWeather?{
-        return realm.objects(CurrentWeather.self).first
+        return realm?.objects(CurrentWeather.self).first
     }
     
     func getListCities() -> [CitySearch]?{
-        let result = Array(realm.objects(CitySearch.self))
-        return result
+        
+        if let cities = realm?.objects(CitySearch.self) {
+            return Array(cities)
+        }else {
+            return nil
+        }
     }
     
 }
 
-extension Realm {
-    
-    func deleteAll<T: Object>(_ type: T.Type) {
-        delete(objects(T.self))
-    }
-}
+
