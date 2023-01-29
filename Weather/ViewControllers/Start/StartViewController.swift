@@ -25,15 +25,9 @@ class StartViewController: UIViewController, Storyboarded {
         }
         
         viewModel.errorCallback = { _ in
-            let alert = UIAlertController(title: "Error", message: "To display the weather, you need to go to Settings -> Weather-> Allow access to geolocation", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
-                self.viewModel.startUpdatingLocation()
-            })
-            alert.addAction(ok)
-            
-            DispatchQueue.main.async(execute: {
-                self.present(alert, animated: true)
-            })
+            self.activityIndicator.stopAnimating()
+            self.showAlert(withTitle:"Error", withMessage: "Please enable location services for this app in Settings")
+
         }
         
         viewModel.startUpdatingLocation()

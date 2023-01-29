@@ -36,9 +36,6 @@ class StartViewModel: StartViewModelProtocol {
         //locationService.startUpdatingLocation()
     }
     
-    func showErrorMessage() {
-        SharedClass.sharedInstance.alertWindow(title:"Error", message:"To display the weather, you need to go to Settings -> Weather-> Allow access to geolocation")
-    }
     
     func getWeatherData(location: CLLocation, completion: @escaping () -> ()){
         let lat = location.coordinate.latitude
