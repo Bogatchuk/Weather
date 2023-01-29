@@ -8,13 +8,19 @@
 import Foundation
 import RealmSwift
 
+enum StorageError: Error {
+    case failedToSave
+    case failedToDelete
+}
 
 
 class StorageManager {
     private init(){}
     static let shared = StorageManager()
+    
     let realm: Realm? = try? Realm()
     
+    // Save city to search list
     func saveCityToSearch(city: CitySearch){
         
         guard let listOfCities = realm?.objects(CitySearch.self) else { return }
@@ -27,14 +33,14 @@ class StorageManager {
             }
         }
         
-        try! realm?.write {
+        try? realm?.write {
             realm?.add(city)
         }
         
     }
     
     func saveForecastWeather(forecastWeather: ForecastWeatherModel){
-
+        
         try? realm?.write {
             realm?.deleteAll(ForecastWeatherModel.self)
             realm?.add(forecastWeather)
@@ -48,9 +54,13 @@ class StorageManager {
         }
     }
     
-    func delete(_ city: CitySearch){
-        try? realm?.write{
-            realm?.delete(city)
+    func delete(_ city: CitySearch) throws {
+        do {
+            try realm?.write{
+                realm?.delete(city)
+            }
+        } catch {
+            throw StorageError.failedToDelete
         }
     }
     

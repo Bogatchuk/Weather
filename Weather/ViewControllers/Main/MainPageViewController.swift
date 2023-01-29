@@ -8,27 +8,25 @@
 import UIKit
 
 
-protocol PageViewControllerDelagate{
+protocol MainPageViewControllerDelagate{
     func changedPage(index:Int)
 }
 
-class PageViewController: UIPageViewController {
+class MainPageViewController: UIPageViewController {
     
     
     var index = 0
     
     private lazy var pages: [UIViewController] = {
         return [
-            UIStoryboard(name: "ToDay", bundle: nil).instantiateViewController(withIdentifier: "ToDayViewController"),
-            UIStoryboard(name: "Tomorrow", bundle: nil).instantiateViewController(withIdentifier: "TomorrowViewController"),
-            UIStoryboard(name: "FiveDays", bundle: nil).instantiateViewController(withIdentifier: "FiveDaysViewController")
-//            self.getViewController(withIdentifier: "ToDayViewController"),
-//            self.getViewController(withIdentifier: "TomorrowViewController"),
-//            self.getViewController(withIdentifier: "FiveDaysViewController")
+            ToDayViewController.instantiate(name: EnumScreens.toDayView.rawValue),
+            TomorrowViewController.instantiate(name: EnumScreens.tomorrowView.rawValue),
+            FiveDaysViewController.instantiate(name: EnumScreens.fiveDaysView.rawValue)
+
         ]
     }()
     
-    var delegatePage:PageViewControllerDelagate?
+    var delegatePage:MainPageViewControllerDelagate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +41,6 @@ class PageViewController: UIPageViewController {
         
     }
     
-//    private func getViewController(withIdentifier identifier: String) -> UIViewController{
-//        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: identifier)
-//    }
     
     func scrollToViewController(index newIndex: Int){
         if let firstViewController = viewControllers?.first,
@@ -65,7 +60,7 @@ class PageViewController: UIPageViewController {
     }
 }
 
-extension PageViewController: UIPageViewControllerDelegate{
+extension MainPageViewController: UIPageViewControllerDelegate{
     func pageViewController(_ pageViewController: UIPageViewController,
                             didFinishAnimating finished: Bool,
                             previousViewControllers: [UIViewController],
@@ -79,7 +74,7 @@ extension PageViewController: UIPageViewControllerDelegate{
     }
 }
 
-extension PageViewController: UIPageViewControllerDataSource{
+extension MainPageViewController: UIPageViewControllerDataSource{
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         

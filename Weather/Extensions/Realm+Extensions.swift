@@ -9,7 +9,7 @@ import RealmSwift
 
 extension Realm {
     
-    func deleteAll<T: Object>(_ type: T.Type) {
+    func deleteAll<T: Object>(_ type: T.Type){
         delete(objects(T.self))
     }
 }

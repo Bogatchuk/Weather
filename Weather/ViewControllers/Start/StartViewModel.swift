@@ -5,7 +5,7 @@
 //  Created by Roma Bogatchuk on 24.01.2023.
 //
 
-import Foundation
+import UIKit
 import CoreLocation
 
 protocol StartViewModelProtocol: AnyObject {
@@ -13,6 +13,23 @@ protocol StartViewModelProtocol: AnyObject {
 }
 
 class StartViewModel: StartViewModelProtocol {
+    let locationService = LocationService()
+    var locationCallback: ((CLLocation) -> ())?
+    
+    init(){
+        locationService.locationManager.delegate = locationService
+    }
+   
+    func startUpdatingLocation() {
+            locationService.locationCallback = { [weak self] location in
+                guard let self = self else { return }
+                if let location = location {
+                    self.locationCallback?(location)
+                }
+                
+            }
+            //locationService.startUpdatingLocation()
+        }
     
     func getWeatherData(location: CLLocation, completion: @escaping () -> ()){
         let lat = location.coordinate.latitude
@@ -36,12 +53,10 @@ class StartViewModel: StartViewModelProtocol {
         }
         
         group.notify(queue: .main) {
-            print("Finish Fetch")
             completion()
-            
         }
-        
     }
 }
+
 
 

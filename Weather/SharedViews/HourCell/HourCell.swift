@@ -11,9 +11,7 @@ class HourCell: UICollectionViewCell {
     
 
     @IBOutlet weak var tempLabel: UILabel!
-    
     @IBOutlet weak var icon: UIImageView!
-    
     @IBOutlet weak var timeLabel: UILabel!
     
     var viewModel: HourCellViewModelProtocol!{

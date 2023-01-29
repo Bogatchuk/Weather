@@ -17,6 +17,7 @@ class NetworkDataFetcher: DataFetcher{
     
     
     func fetchGenericJSONData<T: Decodable>(url: URL, completion: @escaping (T?) -> ()){
+        print(url)
         NetworkManager.shared.request(url: url) { data, error in
             if let error = error {
                 print("Error received requesting data: \(error.localizedDescription)")

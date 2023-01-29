@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import RealmSwift
+
 
 protocol ToDayViewModelProtocol: AnyObject {
     var date: String {get}
@@ -16,40 +16,66 @@ protocol ToDayViewModelProtocol: AnyObject {
     var temperature: String {get}
     var description: String {get}
     var imageName: String {get}
-   // init(currentWeather: CurrentWeather, forecastWeather: ForecastWeatherModel)
-    func cellViewModel(at indexPath: IndexPath) -> HourCellViewModelProtocol
+    func cellViewModel(at indexPath: IndexPath) -> HourCellViewModelProtocol?
+    var numberOfRows: Int { get }
 }
 
 class ToDayViewModel: ToDayViewModelProtocol {
+    
+    var numberOfRows: Int {
+        8
+    }
+    
     var imageName: String {
-        currentWeather.weather.first?.icon ?? "01d"
+        currentWeather?.weather.first?.icon ?? "01d"
     }
     
     var description: String {
-        String(describing: currentWeather.weather.first!.descriptionWeather).capitalizingFirstLetter()
+        if let description = currentWeather?.weather.first?.descriptionWeather{
+            return String(describing: description).capitalizingFirstLetter()
+        } else {
+            return " "
+        }
     }
     
     var date: String {
-        DateService.getStringCurrentDate(timezone: currentWeather.timezone).capitalized
+        let timezone = currentWeather?.timezone
+        return DateService.getStringCurrentDate(timezone: timezone).capitalized
     }
     var feelsLike: String{
-        "feels like \(String(describing: Int(currentWeather.main!.feelsLike)))℃".capitalizingFirstLetter()
+        if let feelsLike = currentWeather?.main?.feelsLike{
+            return "feels like \(String(describing: Int(feelsLike)))℃".capitalizingFirstLetter()
+        } else {
+            return " "
+        }
     }
     
     var minTemp: String{
-        "Min. \(String(describing: Int(currentWeather.main!.tempMin)))℃"
+        if let min = currentWeather?.main?.tempMin{
+            return "Min. \(String(describing: Int(min)))℃"
+        } else {
+            return " "
+        }
     }
     
     var maxTemp: String{
-        "Max. \(String(describing: Int(currentWeather.main!.tempMax)))℃"
+        if let max = currentWeather?.main?.tempMax {
+            return "Max. \(String(describing: Int(max)))℃"
+        } else {
+            return " "
+        }
     }
     
     var temperature: String{
-        "\(String(describing: Int(currentWeather.main!.temp)))℃"
+        if let temp = currentWeather?.main?.temp{
+            return "\(String(describing: Int(temp)))℃"
+        } else {
+            return " "
+        }
     }
     
-    private var currentWeather: CurrentWeather!
-    private var forecastWeather: ForecastWeatherModel!
+    private var currentWeather: CurrentWeather?
+    private var forecastWeather: ForecastWeatherModel?
     
     init() {
         guard let currentWeather = StorageManager.shared.getCurrentWeather() else {return}
@@ -58,11 +84,12 @@ class ToDayViewModel: ToDayViewModelProtocol {
         self.forecastWeather = forecastWeather
     }
     
-    func cellViewModel(at indexPath: IndexPath) -> HourCellViewModelProtocol {
-        let hourWeather = forecastWeather.list[indexPath.row]
-        let timezone = forecastWeather.city?.timezone
+    func cellViewModel(at indexPath: IndexPath) -> HourCellViewModelProtocol? {
         
-        return HourCellViewModel(weatherForTheDay: hourWeather, timezone: timezone!)
+        guard let hourWeather = forecastWeather?.list[indexPath.row] else { return  nil }
+        guard let timezone = forecastWeather?.city?.timezone else { return nil }
+        
+        return HourCellViewModel(weatherForTheDay: hourWeather, timezone: timezone)
     }
 }
 

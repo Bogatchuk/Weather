@@ -14,25 +14,29 @@ protocol FiveDaysViewModelProtocol: AnyObject{
 }
 
 class FiveDaysViewModel: FiveDaysViewModelProtocol {
+    let weatherLists = StorageManager.shared.getForecastWeather()
     
     var forecastWeather: [WeatherLists] {
-        let weatherLists = StorageManager.shared.getForecastWeather()
+    
         var resultArray = Array<WeatherLists>()
-        for weather in weatherLists!.list {
-            resultArray.append(weather)
+        if let weatherLists = weatherLists?.list {
+            for weather in weatherLists {
+                resultArray.append(weather)
+            }
         }
         return resultArray
     }
     
     var numberOfRows: Int {
-        forecastWeather.count
+        5
     }
     
     func cellViewModel(at indexPath: IndexPath) -> DayCellViewModelProtocol {
         let dailyWeatherForecast = forecastWeather.filter({ list in
-            DateService.getDateFromString(date: list.dt_txt, timezone: nil) == DateService.getDateRelativeToToday(add: indexPath.row)
+            DateService.getDateFromString(date: list.dt_txt, timezone: weatherLists?.city?.timezone) == DateService.getDateRelativeToToday(add: indexPath.row, timezone: weatherLists?.city?.timezone)
         
         })
+        
         return DayCellViewModel(weatherForTheDay: dailyWeatherForecast)
     }
 }

@@ -9,20 +9,24 @@ import Foundation
 
 protocol SearchViewModelProtocol {
     var searchIsActive: Bool { get set}
-    var listCities:[CitySearch] {get}
+    var searchedCities: [CitySearch] { get set }
     func addCity(city: CitySearch)
-    func deletCity(city: CitySearch)
+    func deletCity(at indexPath: IndexPath)
     func getWeather(city: String, completion: @escaping () -> ())
-    func cellViewModel(at indexPath: IndexPath, list: [CitySearch]) -> CityCellViewModelProtocol
+    func searchCity(name: String?, completion: @escaping () -> ())
+    func showWeather(at indexPath: IndexPath, completion: @escaping () -> ())
+    func getCitiesFromStorage() -> [CitySearch]
+    func cellViewModel(at indexPath: IndexPath) -> CityCellViewModelProtocol
+    var numberOfRows: Int { get }
 }
 
 class SearchViewModel: SearchViewModelProtocol{
-    
-    var listCities: [CitySearch] {
-        get{
-            StorageManager.shared.getListCities() ?? []
-        }
+    var numberOfRows: Int {
+        return searchIsActive ? searchedCities.count : getCitiesFromStorage().count
     }
+    
+    var searchedCities: [CitySearch] = []
+    
     var searchIsActive: Bool = false
     
     func addCity(city: CitySearch){
@@ -30,12 +34,33 @@ class SearchViewModel: SearchViewModelProtocol{
     }
     
     func deletCity(city: CitySearch){
-        StorageManager.shared.delete(city)
+        do {
+            try StorageManager.shared.delete(city)
+        } catch {
+            // handle error
+        }
     }
     
-    func cellViewModel(at indexPath: IndexPath, list: [CitySearch] ) -> CityCellViewModelProtocol {
-        let city = list[indexPath.row]
-        return CityCellViewModel(foundCity: city)
+    func deletCity(at indexPath: IndexPath){
+        let cities = getCitiesFromStorage()
+        do {
+            try StorageManager.shared.delete(cities[indexPath.row])
+        } catch {
+            // handle error
+        }
+    }
+    
+    func cellViewModel(at indexPath: IndexPath) -> CityCellViewModelProtocol {
+        let listCities = searchIsActive ? searchedCities : getCitiesFromStorage()
+        let cities = listCities[indexPath.row]
+        return CityCellViewModel(foundCity: cities)
+    }
+    
+    func showWeather(at indexPath: IndexPath, completion: @escaping () -> ()) {
+        let city = getCitiesFromStorage()
+        getWeather(city: city[indexPath.row].city) {
+            completion()
+        }
     }
     
     func getWeather(city: String, completion: @escaping () -> ()){
@@ -59,6 +84,22 @@ class SearchViewModel: SearchViewModelProtocol{
         
     }
     
+    func getCitiesFromStorage() -> [CitySearch] {
+        return StorageManager.shared.getListCities() ?? []
+    }
     
-    
+    func searchCity(name: String?, completion: @escaping () -> ()){
+
+        DataFetcherService.featchCity(city: name!) { city in
+            guard let city = city else {return}
+            
+            self.searchedCities = city.map({ city in
+                CitySearch(city: city)
+            })
+            
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
+    }
 }

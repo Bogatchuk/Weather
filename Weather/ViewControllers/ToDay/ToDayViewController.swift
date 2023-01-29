@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ToDayViewController: UIViewController {
+class ToDayViewController: UIViewController, Storyboarded {
 
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var feelsLikeLabel: UILabel!
@@ -50,7 +50,7 @@ extension ToDayViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return viewModel.numberOfRows
     }
     
 }

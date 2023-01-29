@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TomorrowViewController: UIViewController {
+class TomorrowViewController: UIViewController, Storyboarded {
 
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -29,7 +29,6 @@ class TomorrowViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         hourCollectionView?.register(HourCell.nib(), forCellWithReuseIdentifier: HourCell.identifier)
         hourCollectionView.showsHorizontalScrollIndicator = false
         
@@ -49,7 +48,7 @@ extension TomorrowViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.forecastWeatherCount
+        return viewModel.numberOfRows
     }
     
 }

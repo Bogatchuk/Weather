@@ -11,7 +11,7 @@ protocol HourCellViewModelProtocol: AnyObject{
     var temp: String { get }
     var time: String { get }
     var iconName: String { get }
-    init(weatherForTheDay: WeatherLists, timezone: Int)
+    init(weatherForTheDay: WeatherLists, timezone: Int?)
 }
 
 class HourCellViewModel: HourCellViewModelProtocol{
@@ -31,8 +31,8 @@ class HourCellViewModel: HourCellViewModelProtocol{
     }
     
     private let weatherForTheDay: WeatherLists
-    private let timezone: Int
-    required init(weatherForTheDay: WeatherLists, timezone: Int) {
+    private let timezone: Int?
+    required init(weatherForTheDay: WeatherLists, timezone: Int?) {
         self.weatherForTheDay = weatherForTheDay
         self.timezone = timezone
         

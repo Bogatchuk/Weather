@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -20,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Aba-XT-D9g">
-                                <rect key="frame" x="0.0" y="109" width="393" height="743"/>
+                                <rect key="frame" x="0.0" y="89" width="393" height="763"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -36,7 +37,7 @@
                             <constraint firstItem="Vy9-kB-XYH" firstAttribute="trailing" secondItem="y1a-M0-OYm" secondAttribute="trailing" id="EVK-d1-3JJ"/>
                             <constraint firstAttribute="bottom" secondItem="Vy9-kB-XYH" secondAttribute="bottom" id="NQK-k2-mBf"/>
                             <constraint firstItem="Aba-XT-D9g" firstAttribute="leading" secondItem="y1a-M0-OYm" secondAttribute="leading" id="NfU-59-bxf"/>
-                            <constraint firstItem="Aba-XT-D9g" firstAttribute="top" secondItem="y1a-M0-OYm" secondAttribute="top" constant="50" id="oLK-Uy-G3o"/>
+                            <constraint firstItem="Aba-XT-D9g" firstAttribute="top" secondItem="y1a-M0-OYm" secondAttribute="top" constant="30" id="oLK-Uy-G3o"/>
                             <constraint firstAttribute="bottom" secondItem="Aba-XT-D9g" secondAttribute="bottom" id="sm6-XD-02S"/>
                             <constraint firstItem="Vy9-kB-XYH" firstAttribute="top" secondItem="rhM-JQ-IU7" secondAttribute="top" id="uP8-43-IIx"/>
                             <constraint firstItem="Vy9-kB-XYH" firstAttribute="leading" secondItem="y1a-M0-OYm" secondAttribute="leading" id="uV8-D1-XwV"/>
@@ -54,7 +55,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background" width="1080" height="1920"/>
+        <image name="background" width="360" height="640"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

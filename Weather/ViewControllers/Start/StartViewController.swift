@@ -6,70 +6,25 @@
 //
 
 import UIKit
-import CoreLocation
 
-
-
-class StartViewController: UIViewController {
+class StartViewController: UIViewController, Storyboarded {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     weak var coordinator: AppCoordinator?
-    let locationManager = CLLocationManager()
     let viewModel = StartViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
-        
+      
         activityIndicator.startAnimating()
         
-    }
-    //self.coordinator?.showWeatherView()
-    
-    
-}
-
-extension StartViewController: CLLocationManagerDelegate{
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let locations = locations.last {
-            viewModel.getWeatherData(location: locations) { [unowned self] in 
+        viewModel.locationCallback = { [unowned self] location in
+            self.viewModel.getWeatherData(location: location) { [unowned self] in
                 self.activityIndicator.stopAnimating()
-                self.coordinator?.showWeatherView()
+                self.coordinator?.push(name: .weatherView)
             }
-           
-        } else {
-            activityIndicator.stopAnimating()
-            activityIndicator.isHidden = true
-            //alert
         }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch manager.authorizationStatus {
-        case .authorizedAlways, .authorizedWhenInUse:
-            locationManager.requestLocation()
-        case .denied, .restricted:
-            // Hide activityIndicator
-            activityIndicator.stopAnimating()
-            activityIndicator.isHidden = true
-            //alert
-            break
-        case .notDetermined:
-            self.locationManager.requestWhenInUseAuthorization()
-            break
-        @unknown default:
-            // raise an error - This case should never be called
-            break
-        }
+        viewModel.startUpdatingLocation()
         
     }
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        activityIndicator.stopAnimating()
-        activityIndicator.isHidden = true
-        //alert
-        print(error)
-    }
-    
+
 }

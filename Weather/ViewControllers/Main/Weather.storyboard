@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,17 +12,17 @@
             <objects>
                 <viewController storyboardIdentifier="MainViewController" id="rDh-te-QLJ" customClass="MainViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JsC-iU-X2R">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DA2-ii-AsF">
-                                <rect key="frame" x="0.0" y="-44" width="393" height="896"/>
+                                <rect key="frame" x="0.0" y="-103" width="600" height="737"/>
                                 <connections>
                                     <segue destination="2kC-Ul-iBt" kind="embed" id="fg3-6P-osd"/>
                                 </connections>
                             </containerView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="bottom" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fYQ-sv-8np">
-                                <rect key="frame" x="16" y="59" width="361" height="32"/>
+                                <rect key="frame" x="16" y="0.0" width="568" height="32"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <segments>
                                     <segment title="Today"/>
@@ -49,7 +48,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="City" id="vjq-y4-ZFi">
-                        <barButtonItem key="leftBarButtonItem" enabled="NO" title="Item" image="barButtonItem:WUB-Fz-G3c:image" catalog="system" id="WUB-Fz-G3c"/>
+                        <barButtonItem key="leftBarButtonItem" enabled="NO" title="Item" image="barButtonItem:WUB-Fz-G3c:image" id="WUB-Fz-G3c"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="crv-6O-DXy">
                             <connections>
                                 <action selector="showSearchView:" destination="rDh-te-QLJ" id="9Qg-bG-xvI"/>
@@ -64,17 +63,17 @@
             </objects>
             <point key="canvasLocation" x="1283.206106870229" y="-231.69014084507043"/>
         </scene>
-        <!--Page View Controller-->
+        <!--Main Page View Controller-->
         <scene sceneID="ek2-Pj-oKE">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="2kC-Ul-iBt" customClass="PageViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="2kC-Ul-iBt" customClass="MainPageViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fca-uK-uNL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2075" y="-232"/>
         </scene>
     </scenes>
     <resources>
-        <image name="barButtonItem:WUB-Fz-G3c:image" catalog="system" width="128" height="87">
+        <image name="barButtonItem:WUB-Fz-G3c:image" width="128" height="87">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05T
 S2V5ZWRBcmNoaXZlctEICVRyb290gAGvEBELDBscIRkmKywzNjlDS0xQU1UkbnVsbNcNDg8QERITFBUW

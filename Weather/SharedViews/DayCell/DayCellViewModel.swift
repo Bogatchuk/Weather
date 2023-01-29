@@ -24,12 +24,12 @@ class DayCellViewModel: DayCellViewModelProtocol {
     }
      
     var description: String {
-        if weatherForTheDay.count > 6 {
+        if weatherForTheDay.count != Constants.fullDay {
             
-           return String(describing: weatherForTheDay[4].weather.first!.descriptionWeather).capitalizingFirstLetter()
+            return String(describing: weatherForTheDay.first?.weather.first!.descriptionWeather ?? "").capitalizingFirstLetter()
         }else{
            
-            return  String(describing: weatherForTheDay.first?.weather.first!.descriptionWeather ?? "").capitalizingFirstLetter()
+            return  String(describing: weatherForTheDay[Constants.middayIndex].weather.first!.descriptionWeather ?? "").capitalizingFirstLetter()
         }
     }
     
@@ -49,10 +49,11 @@ class DayCellViewModel: DayCellViewModelProtocol {
     }
     
     var imageName: String {
-        if weatherForTheDay.count > 6 {
-           return weatherForTheDay[4].weather.first!.icon
-        }else{
+        print(weatherForTheDay.count )
+        if weatherForTheDay.count != Constants.fullDay  {
             return weatherForTheDay.first?.weather.first!.icon ?? "01d"
+        }else{
+            return weatherForTheDay[Constants.middayIndex].weather.first!.icon ?? "01d"
         }
     }
     

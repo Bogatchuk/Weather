@@ -9,12 +9,14 @@ import Foundation
 
 class DateService {
   
-    static func getStringCurrentDate(timezone: Int) -> String{
+    static func getStringCurrentDate(timezone: Int?) -> String{
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE, d MMM, HH:mm"
         dateFormatter.locale = Locale(identifier: "en_US")
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: timezone)
+        if let timezone = timezone {
+            dateFormatter.timeZone = TimeZone(secondsFromGMT: timezone)
+        }
         return dateFormatter.string(from: date)
     }
     
@@ -27,7 +29,7 @@ class DateService {
         return dateFormatter.string(from: calendar.date(byAdding: .day, value: 1, to: date)!)
     }
     
-    static func getDateRelativeToToday(add day: Int) -> String{
+    static func getDateRelativeToToday(add day: Int, timezone: Int?) -> String{
         let date = Date()
         let calendar = Calendar.current
         let dateFormatter = DateFormatter()
@@ -66,3 +68,14 @@ class DateService {
     }
  
 }
+
+// переделать под расширения
+
+
+//extension Date {
+//    func dayOfWeek() -> String? {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "EEEE"
+//        return dateFormatter.string(from: self).capitalized
+//    }
+//}

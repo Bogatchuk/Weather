@@ -7,25 +7,29 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, Storyboarded {
 
     @IBOutlet weak var pageSegmentedControl: UISegmentedControl!
-    private var pageViewController: PageViewController?
+    private var pageViewController: MainPageViewController?
   
-    
     weak var coordinator: AppCoordinator?
+    
+    var viewModel: MainViewModelProtocol!{
+        didSet{
+            title = viewModel.cityName
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let weather = StorageManager.shared.getForecastWeather()
-        title = weather!.city!.name
+        viewModel = MainViewModel()
   
     }
     
     
     
     @IBAction func showSearchView(_ sender: Any) {
-        coordinator?.showSearchView()
+        coordinator?.push(name: .searchView)
     }
     
     @IBAction func changedSelectedPage(_ sender: UISegmentedControl) {
@@ -35,14 +39,14 @@ class MainViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let pageViewController = segue.destination as? PageViewController {
+        if let pageViewController = segue.destination as? MainPageViewController {
             self.pageViewController = pageViewController
             self.pageViewController?.delegatePage = self
         }
     }
 }
 
-extension MainViewController: PageViewControllerDelagate {
+extension MainViewController: MainPageViewControllerDelagate {
  
     func changedPage(index: Int) {
         pageSegmentedControl.selectedSegmentIndex = index

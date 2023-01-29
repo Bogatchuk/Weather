@@ -7,17 +7,17 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource {
+class SearchViewController: UIViewController, Storyboarded {
     
     let searchController = UISearchController()
-    var listCities: [CitySearch]!
-    var load = false
+    //var listCities: [CitySearch]!
+    
     @IBOutlet weak var tableView: UITableView!
     weak var coordinator: AppCoordinator?
     
     var viewModel: SearchViewModelProtocol!{
         didSet{
-            self.listCities = viewModel.listCities
+            //self.listCities = viewModel.searchedCities
         }
     }
     
@@ -26,7 +26,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         title = "Search"
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
-       
+        
         
         self.tableView.register(CityCell.nib(), forCellReuseIdentifier: CityCell.identifire)
         self.tableView.showsVerticalScrollIndicator = false
@@ -34,62 +34,58 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
         
     }
     
+    
+    
+}
+
+extension SearchViewController: UISearchResultsUpdating{
+    
     func updateSearchResults(for searchController: UISearchController) {
-        self.listCities = []
-        self.tableView.reloadData()
-        
         guard let cityName = searchController.searchBar.text else {return}
-        DataFetcherService.featchCity(city: cityName) { city in
-            guard let city = city else {return}
-           
-            self.listCities = city.map({ city in
-                CitySearch(city: city)
-            })
+        self.viewModel.searchIsActive = searchController.isActive
+        
+        self.viewModel.searchCity(name: cityName) {
             self.tableView.reloadData()
         }
         
         if !searchController.isActive {
-            self.listCities = viewModel.listCities
             self.tableView.reloadData()
         }
     }
     
     
+}
 
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listCities?.count ?? 0
+        return viewModel.numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cityCell", for: indexPath) as! CityCell
-        cell.viewModel = viewModel.cellViewModel(at: indexPath, list: self.listCities)
+        cell.viewModel = viewModel.cellViewModel(at: indexPath)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if searchController.isActive {
-
-            guard let city = self.listCities.first else {return}
+            let city = self.viewModel.searchedCities[indexPath.row]
             self.viewModel.addCity(city: city)
-            self.listCities = viewModel.listCities
             searchController.isActive = false
             tableView.reloadData()
             
-        }else{
-            
-            let city = self.listCities[indexPath.row].city
-            self.viewModel.getWeather(city: city){
-                self.coordinator?.showWeatherView()
+        }else {
+            self.viewModel.showWeather(at: indexPath){
+                self.coordinator?.push(name: .weatherView)
             }
             
         }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let city = listCities[indexPath.row]
         let delete = UIContextualAction(style: .destructive, title: "Delete") { _, _, _ in
-            self.viewModel.deletCity(city: city)
-            self.listCities = self.viewModel.listCities
+            self.viewModel.deletCity(at: indexPath)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         let swipeAction = UISwipeActionsConfiguration(actions: [delete])

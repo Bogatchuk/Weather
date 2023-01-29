@@ -14,20 +14,30 @@ protocol TomorrowViewModelProtocol: AnyObject {
     var maxTemp: String { get }
     var description: String { get }
     var imageName: String { get }
-    var forecastWeatherCount: Int { get }
+    var numberOfRows: Int { get }
     func cellViewModel(at indexPath: IndexPath) -> HourCellViewModelProtocol
     
-
+    
 }
 
 class TomorrowViewModel: TomorrowViewModelProtocol {
+    private let middayIndex = 4
     
     var imageName: String {
-        forecastWeather[4].weather.first?.icon ?? "01d"
+        if forecastWeather.count > middayIndex {
+            return forecastWeather[middayIndex].weather.first?.icon ?? "01d"
+        } else {
+            return "01d"
+        }
     }
     
     var description: String {
-        String(describing: forecastWeather[5].weather.first!.descriptionWeather).capitalizingFirstLetter()
+        if forecastWeather.count > middayIndex {
+            return String(describing: forecastWeather[middayIndex].weather.first!.descriptionWeather)
+                .capitalizingFirstLetter()
+        } else {
+            return "01d"
+        }
         
     }
     
@@ -58,17 +68,21 @@ class TomorrowViewModel: TomorrowViewModelProtocol {
         }
         return "Max. \(String(describing: Int(max)))℃"
     }
-
-    var forecastWeatherCount: Int {
+    
+    var numberOfRows: Int {
         forecastWeather.count
     }
     
-    private var timezone: Int!
+    private var timezone: Int?
     private var forecastWeather = [WeatherLists]()
     
     init() {
         guard let forecastWeather = StorageManager.shared.getForecastWeather() else {return}
-        self.timezone = forecastWeather.city!.timezone!
+        if let timezone = forecastWeather.city?.timezone {
+            self.timezone = timezone
+        } else {
+            timezone = 0
+        }
         
         for list in Array(forecastWeather.list) {
             self.forecastWeather.append(list)
@@ -80,7 +94,7 @@ class TomorrowViewModel: TomorrowViewModelProtocol {
     
     func cellViewModel(at indexPath: IndexPath) -> HourCellViewModelProtocol {
         
-        let weatherForTomorrow = forecastWeather[indexPath.row]       
+        let weatherForTomorrow = forecastWeather[indexPath.row]
         return HourCellViewModel(weatherForTheDay: weatherForTomorrow, timezone: timezone)
     }
     

@@ -15,27 +15,33 @@ class AppCoordinator: Coordinator{
     }
     
     func start() {
-        let vc = UIStoryboard(name: "Start", bundle: nil).instantiateViewController(withIdentifier: "StartViewController") as! StartViewController
+        let vc = EnumScreens.startView.viewController as! StartViewController
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }
     
-    func showWeatherView(){
-        let vc = UIStoryboard(name: "Weather", bundle: nil)
-            .instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
-        vc.coordinator = self
-        
-        //navigationController.viewControllers.removeAll()
-        navigationController.pushViewController(vc, animated: true)
-        
+    
+    func push(name: EnumScreens){
+        switch name{
+        case .startView:
+            let vc = EnumScreens.startView.viewController as! StartViewController
+            vc.coordinator = self
+            navigationController.pushViewController(vc, animated: true)
+        case .weatherView:
+            let vc = EnumScreens.weatherView.viewController as! MainViewController
+            vc.coordinator = self
+            navigationController.pushViewController(vc, animated: true)
+        case .searchView:
+            let vc = EnumScreens.searchView.viewController as! SearchViewController
+            vc.coordinator = self
+            navigationController.pushViewController(vc, animated: true)
+        default:
+            break
+        }
     }
     
-    func showSearchView(){
-        let vc = UIStoryboard(name: "Search", bundle: nil)
-            .instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-        vc.coordinator = self
-      //  navigationController.viewControllers.removeAll()
-        navigationController.pushViewController(vc, animated: true)
-        
-    }
 }
+
+
+
+
