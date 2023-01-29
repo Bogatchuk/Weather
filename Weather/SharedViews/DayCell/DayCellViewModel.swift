@@ -29,7 +29,7 @@ class DayCellViewModel: DayCellViewModelProtocol {
             return String(describing: weatherForTheDay.first?.weather.first!.descriptionWeather ?? "").capitalizingFirstLetter()
         }else{
            
-            return  String(describing: weatherForTheDay[Constants.middayIndex].weather.first!.descriptionWeather ?? "").capitalizingFirstLetter()
+            return  String(describing: weatherForTheDay[Constants.middayIndex].weather.first?.descriptionWeather ?? " " ).capitalizingFirstLetter()
         }
     }
     

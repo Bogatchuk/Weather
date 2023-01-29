@@ -7,6 +7,7 @@
 
 import CoreLocation
 
+
 class LocationService: NSObject, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager
@@ -42,6 +43,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
             break
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
+            errorCallback?(NSError(domain: "Location services are disabled", code: 0, userInfo: nil))
             break
         @unknown default:
             // raise an error - This case should never be called
